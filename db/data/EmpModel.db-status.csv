@@ -1,0 +1,11 @@
+status_code,status_name
+ACT,Active
+INA,Inactive
+PND,Pending
+CMP,Completed
+CAN,Cancelled
+HLD,On Hold
+APP,Approved
+REJ,Rejected
+PRO,In Progress
+CLS,Closed

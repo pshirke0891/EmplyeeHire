@@ -1,0 +1,6 @@
+ID,emp_fname,emp_mname,emp_lname,email,mobile,address,joining_date,createdAt,createdBy,modifiedAt,modifiedBy
+E001,Rajesh,Kumar,Sharma,rajesh.sharma@example.com,9876543210,"12 MG Road, Mumbai",2020-04-15,2020-04-15 09:30:00,admin,2023-06-10 14:22:00,hr_manager
+E002,Anita,,Verma,anita.verma@example.com,9876543211,"45 Nehru Nagar, Delhi",2021-01-20,2021-01-20 10:00:00,admin,2023-06-12 16:05:00,hr_manager
+E003,Rohit,Raj,Patel,rohit.patel@example.com,9876543212,"88 Residency Rd, Bengaluru",2019-11-05,2019-11-05 11:15:00,admin,2023-05-18 09:45:00,supervisor
+E004,Neha,,Singh,neha.singh@example.com,9876543213,"33 Park Street, Kolkata",2022-07-01,2022-07-01 08:55:00,admin,2023-06-20 17:20:00,hr_manager
+E005,Amit,Prakash,Nair,amit.nair@example.com,9876543214,"77 FC Road, Pune",2020-09-10,2020-09-10 09:10:00,admin,2023-06-22 13:30:00,supervisor
