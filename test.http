@@ -1,0 +1,12 @@
+###read employee data
+GET http://localhost:4004/odata/v4/emp/EmployeeSet
+
+### create new employee
+
+POST http://localhost:4004/odata/v4/emp/DepartmentSet
+Content-Type: application/json
+
+{
+     "dept_code": "SL",
+      "dept_name": "Sales Representative"
+}
