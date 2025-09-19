@@ -7,48 +7,83 @@ using {
 
 //transaction table
 entity employeeHire : cuid, managed {
-    emp_fname    : String(50);
-    emp_mname    : String(50);
-    emp_lname    : String(50);
-    email        : String(50);
-    mobile       : String(11);
-    address      : String(100);
-    joining_date : Date;
-    department   : Association to department;
-    position     : Association to position;
-    designation  : Association to designation;
-    status       : Association to status;
-    family_member : Composition of many familyMember on family_member.employee=$self;
+    emp_fname     : String(50);
+    emp_mname     : String(50);
+    emp_lname     : String(50);
+    email         : String(50);
+    mobile        : String(11);
+    address       : Association to addressData;
+    joining_date  : Date;
+    department    : Association to department;
+    position      : Association to position;
+    designation   : Association to designation;
+    status        : Association to status;
+    family_member : Composition of many familyMember
+                        on family_member.employee = $self;
 }
 
 //master table
 entity department {
-    dept_code : String(10);
-    dept_name : String(30)
+    key dept_code : String(10);
+        dept_name : String(30)
 }
 
 //master table
 entity position {
-    pos_code : String(10);
-    pos_name : String(30);
+    key pos_code : String(10);
+        pos_name : String(30);
 }
 
 //master table
 entity designation {
-    design_code : String(10);
-    design_name : String(30);
+    key design_code : String(10);
+        design_name : String(30);
 }
 
 entity status {
-    status_code : String(10);
-    status_name : String(30);
+    key status_code : String(10);
+        status_name : String(30);
 }
 
-entity familyMember:cuid{
-    name:String(30);
-    relation:String(10);
-    age:String(10);
-    occupation:String(20);
-    contact:String(11);
-    employee:Association to employeeHire;
+entity familyMember : cuid {
+    name       : String(30);
+    relation   : String(10);
+    age        : String(10);
+    occupation : String(20);
+    contact    : String(11);
+    employee   : Association to employeeHire;
+}
+
+entity addressData : cuid {
+    city     : Association to City;
+    district : Association to District;
+    state    : Association to State;
+    address1:String(50);
+    address2:String(50);
+    pincode:String(10);
+}
+
+entity City {
+    city_code : String(10);
+    city_name : String(20);
+}
+
+entity District {
+    dist_code : String(10);
+    dist_name : String(20);
+}
+
+entity State {
+    state_code : String(10);
+    state_name : String(20);
+}
+
+entity castedetail:cuid{
+mothertounge:String(20);
+caste:String(20);
+subcaste:String(20);
+castecertificate:String(10);
+castecertificate_num:String(20);
+casteverification:String(10);
+casteverification_num:String(20);
 }
