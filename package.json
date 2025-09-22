@@ -29,7 +29,10 @@
         "credentials": {
           "url": "db.sqlite"
         }
-      }
+      },
+      "ReviewsService": {
+      "impl": "srv/AdminService.js"
+    }
     }
   },
   "workspaces": [

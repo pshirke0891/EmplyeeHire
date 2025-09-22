@@ -1,4 +1,6 @@
 using EmpService as service from '../../srv/AdminService';
+using from '../../db/schema';
+
 annotate service.EmployeeSet with @(
     UI.FieldGroup #GeneratedGroup : {
         $Type : 'UI.FieldGroupType',
@@ -92,7 +94,7 @@ annotate service.EmployeeSet with @(
             $Type : 'UI.ReferenceFacet',
             Label : 'Education Details',
             ID : 'EducationDetails',
-            Target : '@UI.FieldGroup#EducationDetails',
+            Target : 'educations/@UI.LineItem#EducationDetails',
         },
     ],
     UI.LineItem : [
@@ -100,6 +102,7 @@ annotate service.EmployeeSet with @(
             $Type : 'UI.DataField',
             Label : '{i18n>Empfname}',
             Value : emp_fname,
+            @UI.Importance : #High,
         },
         {
             $Type : 'UI.DataField',
@@ -200,21 +203,76 @@ annotate service.EmployeeSet with @(
                 $Type : 'UI.DataField',
                 Value : mobile,
             },
+            {
+                $Type : 'UI.DataField',
+                Value : office_mail,
+                Label : 'office_mail',
+            },
         ],
     },
     UI.FieldGroup #CasteDetails : {
         $Type : 'UI.FieldGroupType',
         Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : casteDetails.caste,
+                Label : 'caste',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : casteDetails.castecertificate,
+                Label : 'castecertificate',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : casteDetails.castecertificate_num,
+                Label : 'castecertificate_num',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : casteDetails.casteverification,
+                Label : 'casteverification',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : casteDetails.casteverification_num,
+                Label : 'casteverification_num',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : casteDetails.ID,
+                Label : 'ID',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : casteDetails.mothertounge,
+                Label : 'mothertounge',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : casteDetails.subcaste,
+                Label : 'subcaste',
+            },
         ],
     },
     UI.FieldGroup #GovermentID : {
         $Type : 'UI.FieldGroupType',
         Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : govID_id_code,
+                Label : 'govID_id_code',
+            },
         ],
     },
     UI.FieldGroup #LanguageDetails : {
         $Type : 'UI.FieldGroupType',
         Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : language.lang_code,
+                Label : 'lang_code',
+            },
         ],
     },
     UI.FieldGroup #BackgroundVerification : {
@@ -230,6 +288,7 @@ annotate service.EmployeeSet with @(
     UI.FieldGroup #EducationDetails : {
         $Type : 'UI.FieldGroupType',
         Data : [
+            
         ],
     },
 );
@@ -430,4 +489,78 @@ annotate service.StatusSet with {
         Common.Text : status_name,
         Common.Text.@UI.TextArrangement : #TextFirst,
 )};
+
+annotate service.EmployeeSet with {
+    govID @(
+        Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'GovIdSet',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : govID_id_code,
+                    ValueListProperty : 'id_code',
+                },
+            ],
+            Label : '{i18n>SelectGovernmentId}',
+        },
+        Common.ValueListWithFixedValues : true,
+)};
+
+annotate service.GovIdSet with {
+    id_code @(
+        Common.Text : id_name,
+        Common.Text.@UI.TextArrangement : #TextFirst,
+)};
+
+annotate service.LanguageSet with {
+    lang_code @(
+        Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'LanguageSet',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : lang_code,
+                    ValueListProperty : 'lang_code',
+                },
+            ],
+            Label : '{i18n>SelectKnownLanguage}',
+        },
+        Common.ValueListWithFixedValues : true,
+        Common.Text : lang_name,
+        Common.Text.@UI.TextArrangement : #TextOnly,
+)};
+
+annotate service.EducationSet with @(
+    Communication.Contact #contact : {
+        $Type : 'Communication.ContactType',
+        fn : branch,
+    }
+);
+
+annotate service.education with @(
+    UI.LineItem #EducationDetails : [
+        {
+            $Type : 'UI.DataField',
+            Value : branch,
+            Label : '{i18n>EducationBranch}',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : edu_name,
+            Label : '{i18n>DegreeName}',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : passing_date,
+            Label : '{i18n>PassoutDate}',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : university,
+            Label : '{i18n>Universityboard}',
+        },
+    ]
+);
 

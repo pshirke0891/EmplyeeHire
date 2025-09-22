@@ -1,0 +1,6 @@
+ID,mothertounge,caste,subcaste,castecertificate,castecertificate_num,casteverification,casteverification_num
+1,Hindi,Scheduled Caste,Chamar,Yes,SC123456,Yes,CV123456
+2,Telugu,Backward Class,Yadav,Yes,BC654321,No,""	
+3,Marathi,Scheduled Tribe,Gond,Yes,ST789012,Yes,CV789012
+4,Tamil,General	Iyer,No,"",No,""
+5,Kannada,Other Backward Class,Kuruba,Yes,OBC345678,Yes,CV345678

@@ -118,7 +118,18 @@
               "controlConfiguration": {
                 "@com.sap.vocabularies.UI.v1.LineItem": {
                   "tableSettings": {
-                    "type": "ResponsiveTable"
+                    "type": "ResponsiveTable",
+                    "enableExport": true,
+                    "selectionMode": "Single",
+                    "widthIncludingColumnHeader": true,
+                    "personalization": {
+                      "column": true,
+                      "filter": true,
+                      "sort": true
+                    },
+                    "quickVariantSelection": {
+                      "showCounts": true
+                    }
                   }
                 }
               },
