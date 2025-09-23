@@ -7,43 +7,38 @@ annotate service.EmployeeSet with @(
         Data : [
             {
                 $Type : 'UI.DataField',
-                Label : 'emp_fname',
+                Label : '{i18n>FirstName}',
                 Value : emp_fname,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'emp_mname',
+                Label : 'Father Name',
                 Value : emp_mname,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'emp_lname',
+                Label : '{i18n>Emplname}',
                 Value : emp_lname,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'joining_date',
+                Label : '{i18n>JoiningDate}',
                 Value : joining_date,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'department_dept_code',
+                Label : '{i18n>Departmentdeptname}',
                 Value : department_dept_code,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'position_pos_code',
+                Label : '{i18n>Position}',
                 Value : position_pos_code,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'designation_design_code',
+                Label : '{i18n>Designationdesignname}',
                 Value : designation_design_code,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'status_status_code',
-                Value : status_status_code,
             },
         ],
     },
@@ -178,6 +173,11 @@ annotate service.EmployeeSet with @(
             ID : 'emp_fname',
             Target : '@UI.DataPoint#emp_fname',
         },
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'status_status_code',
+            Target : '@UI.DataPoint#status_status_code',
+        },
     ],
     UI.HeaderInfo : {
         TypeName : '{i18n>CreateNewEmployee}',
@@ -291,10 +291,16 @@ annotate service.EmployeeSet with @(
             
         ],
     },
+    UI.DataPoint #status_status_code : {
+        $Type : 'UI.DataPointType',
+        Value : status_status_code,
+        Title : '{i18n>ProfileStatus}',
+    },
 );
 
 annotate service.EmployeeSet with {
-    department @Common.ValueList : {
+    department @(
+        Common.ValueList : {
         $Type : 'Common.ValueListType',
         CollectionPath : 'DepartmentSet',
         Parameters : [
@@ -308,43 +314,54 @@ annotate service.EmployeeSet with {
                 ValueListProperty : 'dept_name',
             },
         ],
-    }
+        Label : '{i18n>SelectDepartment}',
+    },
+        Common.ValueListWithFixedValues : true,
+    )
 };
 
 annotate service.EmployeeSet with {
-    position @Common.ValueList : {
-        $Type : 'Common.ValueListType',
-        CollectionPath : 'PositionSet',
-        Parameters : [
-            {
-                $Type : 'Common.ValueListParameterInOut',
-                LocalDataProperty : position_pos_code,
-                ValueListProperty : 'pos_code',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'pos_name',
-            },
-        ],
-    }
+    position @(
+        Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'PositionSet',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : position_pos_code,
+                    ValueListProperty : 'pos_code',
+                },
+                {
+                    $Type : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'pos_name',
+                },
+            ],
+        Label : '{i18n>SelectPosition}',
+        },
+        Common.ValueListWithFixedValues : true,
+    )
 };
 
 annotate service.EmployeeSet with {
-    designation @Common.ValueList : {
-        $Type : 'Common.ValueListType',
-        CollectionPath : 'DesignationSet',
-        Parameters : [
-            {
-                $Type : 'Common.ValueListParameterInOut',
-                LocalDataProperty : designation_design_code,
-                ValueListProperty : 'design_code',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'design_name',
-            },
-        ],
-    }
+    designation @(
+        Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'DesignationSet',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : designation_design_code,
+                    ValueListProperty : 'design_code',
+                },
+                {
+                    $Type : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'design_name',
+                },
+            ],
+        Label : '{i18n>SelectDesignation}',
+        },
+        Common.ValueListWithFixedValues : true,
+    )
 };
 
 annotate service.EmployeeSet with {
@@ -390,6 +407,7 @@ annotate service.DepartmentSet with {
             PresentationVariantQualifier : 'vh_DepartmentSet_dept_name',
         },
         Common.ValueListWithFixedValues : true,
+        Common.Text : dept_code,
     )
 };
 
@@ -446,12 +464,6 @@ annotate service.DepartmentSet with @(
     }
 );
 
-annotate service.DepartmentSet with {
-    dept_code @(
-        Common.Text : dept_name,
-        Common.Text.@UI.TextArrangement : #TextFirst,
-)};
-
 annotate service.DesignationSet with @(
     UI.PresentationVariant #vh_DesignationSet_design_name : {
         $Type : 'UI.PresentationVariantType',
@@ -468,8 +480,7 @@ annotate service.DesignationSet with @(
 annotate service.DesignationSet with {
     design_code @(
         Common.Text : design_name,
-        Common.Text.@UI.TextArrangement : #TextFirst,
-)};
+        )};
 
 annotate service.StatusSet with @(
     UI.PresentationVariant #vh_StatusSet_status_name : {

@@ -27,12 +27,12 @@
       "db": {
         "kind": "sqlite",
         "credentials": {
-          "url": "db.sqlite"
+          "database": "my.db"
         }
       },
       "ReviewsService": {
-      "impl": "srv/AdminService.js"
-    }
+        "impl": "srv/AdminService.js"
+      }
     }
   },
   "workspaces": [

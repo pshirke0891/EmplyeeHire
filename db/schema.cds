@@ -19,7 +19,7 @@ entity employeeHire : cuid, managed {
     position      : Association to position;
     designation   : Association to designation;
     status        : Association to status;
-    casteDetails  : Association to castedetail;
+    casteDetails  : Association to one castedetail;
     family_member : Composition of many familyMember
                         on family_member.employee = $self;
     language      : Composition of many languagedetail
